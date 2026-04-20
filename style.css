@@ -1,0 +1,36 @@
+:root{--color:#000; --border:#111; --background:#E9FBFC}
+.dark-mode{--color:#fff; --border:#595959; --background:#152324}
+@media (max-width: 600px){
+body{padding:1em !important;}
+.modal-content{min-width:100%; height:100%; max-width:100%; padding border-radius:0; display:flex; flex-direction:column; justify-content:center;}
+.modal-step{padding:1em;}
+#canvas, .content{height:700px !important;}
+.image{border-radius:20px 20px 0 0 !important; min-width:100%;}
+.card{width:88% !important; flex-direction:column !important;}
+.card-content{width:100%;}
+input{width:90% !important;}
+}
+a, a:visited{color:var(--color); text-decoration:underline; cursor:auto;}
+body{margin:0; padding:4em; max-width:100%; background:var(--background); font-family:'Segoe UI', sans-serif; font-size:19px; color:var(--color);}
+#canvas{position:absolute; top:0; left:0; width:100%; height:400px; filter:blur(60px);}
+.content{position:relative; z-index:1; display:flex; flex-direction:column; justify-content:center; text-align:center; height:400px;}
+.content h1{font-size:3.5rem;}
+button{background:#111; color:#fff; width:300px; border-radius:40px; border:none; font-size:19px; padding:1em; margin:0 auto; font-weight:bold;}
+.card{border:2px solid var(--border); border-radius:20px; margin:5px auto; font-weight:bold; width:70%; overflow:hidden; display:flex; flex-direction:row;}
+.card-content{width:80%; float:right; padding:1em; flex:2;}
+.card h1{font-size:2em;}
+.image{border-radius:20px 0 0 20px; flex:1;}
+.modal-overlay{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:2; justify-content: center; align-items: center;}
+.modal-content{background:var(--background); padding:1em; border-radius:20px; width:50%; position:relative; text-align:center;}
+.modal-step{display:none;}
+.modal-step.active{display:block;}
+.form-group{margin-bottom:15px; text-align:left;}
+label{display:block; margin-bottom:5px; font-weight:bold;}
+input, select{width:100%; padding:1em; border:2px solid var(--color); border-radius:40px; font-size:19px; background:var(--background); color:var(--color);}
+.conditional-fields{display:none;}
+.btn-group{margin-top:20px;}
+.btn-group button{margin-top:20px;}
+.btn-primary{background:#ffc437; color:#000;}
+.btn-primary:disabled{background:#ccc; color:#fff; cursor:not-allowed;}
+.close-modal{position:absolute; top:2em; right:2em; cursor:pointer; }
+#toggle-mode{background:none; width:20px !important;}
