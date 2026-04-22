@@ -86,7 +86,7 @@ isValid = isValid && document.getElementById('inp-idade').value !== '';
 document.getElementById('btn-final-whatsapp').disabled = !isValid;
 }
 function redirectToWhatsApp(withData = false) {
-    const phone = "5584921603658";
+    const phone = "5588992535489";
     let message = "";
 if (withData) {
 const nome = document.getElementById('inp-nome').value;
