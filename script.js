@@ -61,57 +61,61 @@ const modal = document.getElementById('wp-modal-overlay');
 const btnOpen = document.getElementById('open-whatsapp-modal');
 const btnClose = document.querySelector('.close-modal');
 btnOpen.onclick = () => { modal.style.display = 'flex'; showStep('step-intro'); };
-btnClose.onclick = () => { modal.style.display = 'none'; };
+if(btnClose) btnClose.onclick = () => { modal.style.display = 'none'; };
 function showStep(stepId) {
-    document.querySelectorAll('.modal-step').forEach(step => step.classList.remove('active'));
-    document.getElementById(stepId).classList.add('active');
+document.querySelectorAll('.modal-step').forEach(step => step.classList.remove('active'));
+document.getElementById(stepId).classList.add('active');
 }
 function toggleAssuntoFields() {
 const assunto = document.getElementById('inp-assunto').value;
 document.getElementById('fields-auxilio').style.display = (assunto === 'Auxílio doença') ? 'block' : 'none';
 document.getElementById('fields-idade').style.display = (['BPC Loas', 'Aposentadoria'].includes(assunto)) ? 'block' : 'none';
-    validateForm();
+validateForm();
 }
 function validateForm() {
 const nome = document.getElementById('inp-nome').value.trim();
 const profissao = document.getElementById('inp-profissao').value.trim();
+const estado = document.getElementById('inp-estado').value; // Novo campo
 const assunto = document.getElementById('inp-assunto').value;
-let isValid = nome !== '' && profissao !== '' && assunto !== '';
-
-if (assunto === 'Auxílio doença') {
-isValid = isValid && document.getElementById('inp-inss').value !== '' && document.getElementById('inp-laudo').value !== '';
-    } else if (['BPC Loas', 'Aposentadoria'].includes(assunto)) {
-isValid = isValid && document.getElementById('inp-idade').value !== '';
-}
-document.getElementById('btn-final-whatsapp').disabled = !isValid;
-}
+let isValid = nome !== '' && profissao !== '' && estado !== '' && assunto !== '';
+if (assunto === 'Auxílio doença') {isValid = isValid && document.getElementById('inp-inss').value !== '' && document.getElementById('inp-laudo').value !== '';
+} else if (['BPC Loas', 'Aposentadoria'].includes(assunto)) {isValid = isValid && document.getElementById('inp-idade').value !== '';}
+document.getElementById('btn-final-whatsapp').disabled = !isValid;}
 function redirectToWhatsApp(withData = false) {
-    const phone = "5588992535489";
-    let message = "";
+let phone = "";
+let message = "";
 if (withData) {
+const estado = document.getElementById('inp-estado').value;
+if (estado === "Ceará") {phone = "5588992535489";
+} else if (estado === "Rio Grande do Norte") {phone = "558499400102";
+} else {phone = "5584921603658"; }
 const nome = document.getElementById('inp-nome').value;
 const profissao = document.getElementById('inp-profissao').value;
 const assunto = document.getElementById('inp-assunto').value;
-message = `Olá!\n* Nome: ${nome}\n* Profissão: ${profissao}\n* Assunto: ${assunto}`;
+message = `Olá!\n* Nome: ${nome}\n* Profissão: ${profissao}\n* Estado: ${estado}\n* Assunto: ${assunto}`;
 if (assunto === 'Auxílio doença') {
 message += `\n* Contribui INSS: ${document.getElementById('inp-inss').value}\n* Laudo +9 meses: ${document.getElementById('inp-laudo').value}`;
 } else if (['BPC Loas', 'Aposentadoria'].includes(assunto)) {
 message += `\n* Idade: ${document.getElementById('inp-idade').value}`;}
-}
+} else {
+phone = "5584921603658";
+message = "Olá!";}
 const url = `https://wa.me/${phone}/?text=${encodeURIComponent(message)}`;
 window.open(url, '_blank');
-
 showStep('step-thanks');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
 const toggleButton = document.getElementById('toggle-mode');
+if (toggleButton) {
 const body = document.body;
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {body.classList.add('dark-mode');}
+if (savedTheme === 'dark') { body.classList.add('dark-mode'); }
 toggleButton.addEventListener('click', () => {
 body.classList.toggle('dark-mode');
-if (body.classList.contains('dark-mode')) {localStorage.setItem('theme', 'dark');
+if (body.classList.contains('dark-mode')) {
+localStorage.setItem('theme', 'dark');
 } else {localStorage.setItem('theme', 'light');}
-  });
+        });
+    }
 });
