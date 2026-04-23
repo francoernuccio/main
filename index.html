@@ -51,6 +51,14 @@
 <input type="text" id="inp-profissao" oninput="validateForm()">
 </div>
 <div class="form-group">
+<label>Qual seu estado?</label>
+<select id="inp-estado" onchange="validateForm()">
+<option value="">Selecione...</option>
+<option value="Ceará">Ceará</option>
+<option value="Rio Grande do Norte">Rio Grande do Norte</option>
+</select>
+</div>
+<div class="form-group">
 <label>Assunto</label>
 <select id="inp-assunto" onchange="toggleAssuntoFields()">
 <option value="">Selecione...</option>
